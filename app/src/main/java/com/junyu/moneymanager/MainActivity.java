@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
-
+dxedxwsxswx
         myRef.setValue("Hello, World!");
     }
 }
