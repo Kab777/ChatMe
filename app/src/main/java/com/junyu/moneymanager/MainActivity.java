@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         if (MMUserPreference.ifUserRegistered(this)) {
             Intent intent = new Intent(MainActivity.this, MainPage.class);
             startActivity(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            finish();
             return;
         }
 
