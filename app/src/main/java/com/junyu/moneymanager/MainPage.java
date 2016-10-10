@@ -1,6 +1,7 @@
 package com.junyu.moneymanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -43,7 +44,6 @@ public class MainPage extends AppCompatActivity {
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.submitGroupId) Button submitGroupId;
 
-
     private DatabaseReference fireDb;
     private Map<String, String> groupIdNames = new HashMap<>();
     private List<String> groupNames = new ArrayList<>();
@@ -51,7 +51,11 @@ public class MainPage extends AppCompatActivity {
 
     @OnClick(R.id.submitGroupId)
     public void goToGroupPage() {
-        String groupId = groupIdNames.get(groupSpinner.getSelectedItem().toString());
+        String gName = groupSpinner.getSelectedItem().toString();
+        String groupId = groupIdNames.get(gName);
+        Intent intent = new Intent(MainPage.this, GroupPageActivity.class);
+        intent.putExtra(GROUP_ID, groupId);
+        startActivity(intent);
 
     }
 
@@ -74,7 +78,7 @@ public class MainPage extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     if (child.getKey().equals(GROUP_ID)) {
                         for (DataSnapshot groupChild : child.getChildren()) {
-                            groupIdNames.put(groupChild.getKey(), groupChild.getValue().toString());
+                            groupIdNames.put(groupChild.getValue().toString(),groupChild.getKey());
                             groupNames.add(groupChild.getValue().toString());
                         }
                         Gson gson = new Gson();
@@ -91,6 +95,9 @@ public class MainPage extends AppCompatActivity {
                 }
 
                 spinnerArrayAdapter.notifyDataSetChanged();
+                if(!groupNames.isEmpty()){
+                    groupSpinner.setSelection(0);
+                }
                 progressBar.setVisibility(View.GONE);
 
             }

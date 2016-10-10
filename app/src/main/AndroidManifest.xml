@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".MainPage"></activity>
+        <activity android:name=".GroupPageActivity"></activity>
     </application>
 
 </manifest>
