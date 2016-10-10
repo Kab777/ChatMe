@@ -1,10 +1,13 @@
 package com.junyu.moneymanager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,29 +25,75 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 import static android.R.attr.password;
+import static com.junyu.moneymanager.MMConstant.PREFERENCE_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.userEmail) EditText userName;
+    @BindView(R.id.userEmail) EditText userEmail;
     @BindView(R.id.userPassword) EditText userPassWord;
     @BindView(R.id.loginButton) TextView loginBtn;
     @BindView(R.id.signUpButton) TextView signUpBtn;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authListener;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
         ButterKnife.bind(this);
+        sharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+
+
+        if (MMUserPreference.ifUserRegistered(this)) {
+            Intent intent = new Intent(MainActivity.this, MainPage.class);
+            startActivity(intent);
+            return;
+        }
+
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String password = userPassWord.getText().toString();
+                String email = userEmail.getText().toString().trim();
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "can't be empty",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
+
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        Timber.v("failed");
+                                    } else {
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(MMConstant.USER_ID, task.getResult().getUser().getUid());
+                                        editor.commit();
+
+                                        Intent intent = new Intent(MainActivity.this, MainPage.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+
+                                }
+                            });
+                }
 
             }
         });
@@ -57,40 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Map<String, String> post2 = new HashMap<>();
-//                post2.put("name", "junyu");
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference().child("Users");
-//                String userID = myRef.push().getKey();
-//                myRef.push().setValue(post2);
-////                Map<String, HashMap<String, String>> post1 = new HashMap<>();
-////                post1.put(userID, post2);
-////                myRef.updateChildren(post2);
-//            }
-//        });
-//        testButton2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference().child("Users");
-//                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot child : dataSnapshot.getChildren()) {
-//                            Timber.v(child.toString());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-//            }
-//        });
 
     }
 }
