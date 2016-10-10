@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.junyu.moneymanager">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,11 +20,11 @@
         </activity>
         <activity
             android:name=".SignUpActivity"></activity>
+        <activity
+            android:name=".OutcomeActivity"></activity>
 
-
-        <activity android:name=".HomepageActivity">
-
-        </activity>
+        <activity android:name=".HomepageActivity"></activity>
+        <activity android:name=".MainPage"></activity>
     </application>
 
 </manifest>
