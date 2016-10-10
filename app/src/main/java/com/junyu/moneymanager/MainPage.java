@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,9 +26,11 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import timber.log.Timber;
 
 import static com.junyu.moneymanager.MMConstant.GROUP_ID;
+import static com.junyu.moneymanager.MMConstant.NAME;
 import static com.junyu.moneymanager.MMConstant.PREFERENCE_NAME;
 
 /**
@@ -34,39 +38,58 @@ import static com.junyu.moneymanager.MMConstant.PREFERENCE_NAME;
  */
 
 public class MainPage extends AppCompatActivity {
+    @BindView(R.id.userName) TextView userPersonalName;
     @BindView(R.id.groupSpinner) Spinner groupSpinner;
     @BindView(R.id.progressBar) ProgressBar progressBar;
+    @BindView(R.id.submitGroupId) Button submitGroupId;
+
 
     private DatabaseReference fireDb;
     private Map<String, String> groupIdNames = new HashMap<>();
     private List<String> groupNames = new ArrayList<>();
     SharedPreferences sharedPreferences;
 
+    @OnClick(R.id.submitGroupId)
+    public void goToGroupPage() {
+        String groupId = groupIdNames.get(groupSpinner.getSelectedItem().toString());
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         ButterKnife.bind(this);
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, groupNames);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.group_spinner_item, groupNames);
         groupSpinner.setAdapter(spinnerArrayAdapter);
 
         sharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         fireDb = FirebaseDatabase.getInstance().getReference();
 
-        DatabaseReference myRef = fireDb.child(MMConstant.USERS).child(MMUserPreference.getUserId(this)).child(GROUP_ID);
+        DatabaseReference myRef = fireDb.child(MMConstant.USERS).child(MMUserPreference.getUserId(this));//.child(GROUP_ID)
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    groupIdNames.put(child.getKey(), child.getValue().toString());
-                    groupNames.add(child.getValue().toString());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    if (child.getKey().equals(GROUP_ID)) {
+                        for (DataSnapshot groupChild : child.getChildren()) {
+                            groupIdNames.put(groupChild.getKey(), groupChild.getValue().toString());
+                            groupNames.add(groupChild.getValue().toString());
+                        }
+                        Gson gson = new Gson();
+                        String result = gson.toJson(groupIdNames);
+                        editor.putString(MMConstant.GROUP_ID, result);
+                        editor.commit();
+                    } else if (child.getKey().equals(NAME)) {
+                        String name = child.getValue().toString();
+                        userPersonalName.setText(name);
+                        editor.putString(MMConstant.NAME, name);
+                        editor.commit();
+                    }
+
                 }
-                Gson gson = new Gson();
-                String result = gson.toJson(groupIdNames);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(MMConstant.GROUP_ID, result);
-                editor.commit();
+
                 spinnerArrayAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
 
