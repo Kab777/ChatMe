@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                                     // the auth state listener will be notified and logic to handle the
                                     // signed in user can be handled in the listener.
                                     if (!task.isSuccessful()) {
-                                        Timber.v("failed");
+                                        Toast.makeText(MainActivity.this, task.getException().getMessage(),
+                                                Toast.LENGTH_SHORT).show();
                                     } else {
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
                                         editor.putString(MMConstant.USER_ID, task.getResult().getUser().getUid());

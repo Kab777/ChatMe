@@ -10,13 +10,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="20dp"
-        android:text="User Name here" />
+        android:text="Loading..." />
 
     <Spinner
         android:id="@+id/groupSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userName"></Spinner>
+        android:layout_below="@id/userName"/>
 
     <Button
         android:id="@+id/submitGroupId"
