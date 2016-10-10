@@ -18,7 +18,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity">
+            android:name=".SignUpActivity"></activity>
+
+
+        <activity android:name=".HomepageActivity">
 
         </activity>
     </application>
