@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MoneyManager</string>
+
+    <string name="group_prompt">Choose a group</string>
+
+    <string-array name="group_arrays">
+        <item>22 marshall</item>
+        <item>18 mulberry</item>
+        <item>35 columbia</item>
+    </string-array>
+
 </resources>
