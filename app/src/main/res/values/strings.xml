@@ -3,10 +3,12 @@
 
     <string name="group_prompt">Choose a group</string>
 
-    <string-array name="group_arrays">
-        <item>22 marshall</item>
-        <item>18 mulberry</item>
-        <item>35 columbia</item>
+
+    <string name="transaction_prompt">Choose a transaction type</string>
+
+    <string-array name="transaction_arrays">
+        <item>income</item>
+        <item>expense</item>
     </string-array>
 
     <string name="tag_prompt">Choose a group</string>
