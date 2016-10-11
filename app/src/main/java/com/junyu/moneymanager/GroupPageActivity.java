@@ -79,9 +79,10 @@ public class GroupPageActivity extends AppCompatActivity {
         fireDb = FirebaseDatabase.getInstance().getReference();
 
         DatabaseReference myRef = fireDb.child(MMConstant.Groups).child(groupId);//.child(GROUP_ID)
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                groupMems.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     if (child.getKey().equals(MEMBERS)) {
                         for (DataSnapshot groupChild : child.getChildren()) {
