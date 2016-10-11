@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <TextView
         android:id="@+id/groupName"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Group Name"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/groupBalance"
@@ -20,13 +20,33 @@
         android:gravity="center"
         android:text="Balance"
         android:textColor="#00FFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/members"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/groupBalance"
+        android:text="Group Members"
+        android:textColor="#FF00FF"
+        android:textSize="20sp"/>
 
     <ListView
         android:id="@+id/groupMember"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/groupName"></ListView>
+        android:layout_below="@id/members"></ListView>
+
+    <Button
+        android:id="@+id/addFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Add Friend"
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/goToTranH"
@@ -34,13 +54,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#CCFFFF"
-        android:text="View Transcation History" />
+        android:text="View Transcation History"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>
