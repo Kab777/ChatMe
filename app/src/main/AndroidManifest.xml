@@ -23,8 +23,8 @@
         <activity
             android:name=".OutcomeActivity"></activity>
 
-        <activity android:name=".HomepageActivity"></activity>
-        <activity android:name=".MainPage"></activity>
+        <activity android:name=".MainPageActivity"></activity>
+        <activity android:name=".GroupPageActivity"></activity>
     </application>
 
 </manifest>
