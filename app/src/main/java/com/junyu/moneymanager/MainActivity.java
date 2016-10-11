@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.userEmail) EditText userEmail;
     @BindView(R.id.userPassword) EditText userPassWord;
-    @BindView(R.id.loginButton) TextView loginBtn;
-    @BindView(R.id.signUpButton) TextView signUpBtn;
+    @BindView(R.id.loginButton) Button loginBtn;
+    @BindView(R.id.signUpButton) Button signUpBtn;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -65,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
                             .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                                    // If sign in fails, display a message to the user. If sign in succeeds
-                                    // the auth state listener will be notified and logic to handle the
-                                    // signed in user can be handled in the listener.
                                     if (!task.isSuccessful()) {
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(),
                                                 Toast.LENGTH_SHORT).show();

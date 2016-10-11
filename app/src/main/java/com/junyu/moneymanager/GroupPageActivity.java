@@ -45,15 +45,24 @@ import static com.junyu.moneymanager.MMConstant.USERS;
 
 public class GroupPageActivity extends AppCompatActivity {
     @BindView(R.id.goToTranH) Button gotoTranH;
+    @BindView(R.id.addFriend) Button addFriend;
     @BindView(R.id.groupName) TextView groupName;
     @BindView(R.id.groupBalance) TextView groupBalance;
     @BindView(R.id.groupMember) ListView groupMembers;
     @BindView(R.id.progressBar) ProgressBar progressBar;
 
+
+    @OnClick(R.id.addFriend)
+    public void addNewMember() {
+        addNewMemberDialog = new AddNewMemberDialog(this, groupId, grpName);
+        addNewMemberDialog.show();
+    }
+
     private DatabaseReference fireDb;
     private String groupId = "";
+    private String grpName = "";
     private ArrayList<String> groupMems = new ArrayList<>();
-
+    private AddNewMemberDialog addNewMemberDialog;
 
 
 
@@ -62,6 +71,7 @@ public class GroupPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_home_page);
         ButterKnife.bind(this);
+
 
         Intent intent = getIntent();
         groupId = intent.getStringExtra(GROUP_ID);
@@ -81,8 +91,8 @@ public class GroupPageActivity extends AppCompatActivity {
                         }
                         itemsAdapter.notifyDataSetChanged();
                     } else if (child.getKey().equals(GROUPNAME)) {
-                        String name = child.getValue().toString();
-                        groupName.setText(name);
+                        grpName = child.getValue().toString();
+                        groupName.setText(grpName);
                     } else if (child.getKey().equals(BALANCE)) {
                         String blance = child.getValue().toString();
                         groupBalance.setText("Balance : " + blance);
@@ -100,7 +110,6 @@ public class GroupPageActivity extends AppCompatActivity {
 
             }
         });
-
 
 
     }
