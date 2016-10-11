@@ -4,15 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,9 +28,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import timber.log.Timber;
 
-import static android.R.attr.name;
+import static com.junyu.moneymanager.MMConstant.EMAIL;
+import static com.junyu.moneymanager.MMConstant.NAME;
 import static com.junyu.moneymanager.MMConstant.PREFERENCE_NAME;
-import static com.junyu.moneymanager.MMConstant.USER_ID;
 
 /**
  * Created by Junyu on 10/9/2016.
@@ -47,12 +43,13 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.signUpButton) TextView signUpButton;
     private FirebaseAuth firebaseAuth;
     private String userPersonalName = "";
+    private String userEmailAddress = "";
     SharedPreferences sharedpreferences;
 
     @OnClick(R.id.signUpButton)
     public void signUp() {
         String password = userPassWord.getText().toString();
-        String email = userEmail.getText().toString().trim();
+        userEmailAddress = userEmail.getText().toString().trim();
         userPersonalName = userName.getText().toString().trim();
 
 
@@ -63,11 +60,11 @@ public class SignUpActivity extends AppCompatActivity {
                     "Please enter first and last names.", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
-        } else if (password.isEmpty() || email.isEmpty() || userPersonalName.isEmpty()) {
+        } else if (password.isEmpty() || userEmailAddress.isEmpty() || userPersonalName.isEmpty()) {
             Toast.makeText(SignUpActivity.this, "can't be empty",
                     Toast.LENGTH_SHORT).show();
         } else {
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
+            firebaseAuth.createUserWithEmailAndPassword(userEmailAddress, password)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -77,11 +74,14 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.makeText(SignUpActivity.this, task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                String userId = task.getResult().getUser().getUid().toString();
+                                FirebaseUser fbUser = task.getResult().getUser();
+                                String userId = fbUser.getUid().toString();
+
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference().child(MMConstant.USERS).child(userId);
                                 Map<String, String> userInfo = new HashMap<>();
-                                userInfo.put(MMConstant.NAME, userPersonalName);
+                                userInfo.put(NAME, userPersonalName);
+                                userInfo.put(EMAIL,userEmailAddress);
                                 myRef.setValue(userInfo);
 
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -92,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.makeText(SignUpActivity.this, "signUP successFul",
                                         Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(SignUpActivity.this, MainPage.class);
+                                Intent intent = new Intent(SignUpActivity.this, MainPageActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
@@ -111,7 +111,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         sharedpreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
-
 
     }
 }
