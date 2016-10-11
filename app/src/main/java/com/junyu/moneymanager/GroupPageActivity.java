@@ -85,7 +85,7 @@ public class GroupPageActivity extends AppCompatActivity {
                         groupName.setText(name);
                     } else if (child.getKey().equals(BALANCE)) {
                         String blance = child.getValue().toString();
-                        groupBalance.setText(blance);
+                        groupBalance.setText("Balance : " + blance);
                     }
 
                 }
