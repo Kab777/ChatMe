@@ -22,11 +22,22 @@
         android:textColor="#00FFFF"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/members"
+
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/groupBalance"
+        android:text="Group Members"
+        android:textColor="#FF00FF"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/groupMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/groupName"></ListView>
+        android:layout_below="@id/members"></ListView>
 
     <Button
         android:id="@+id/goToTranH"
