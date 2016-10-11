@@ -27,7 +27,7 @@
         android:inputType="textPassword"
         android:singleLine="true" />
 
-    <TextView
+    <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:padding="6dp"
         android:text="Login" />
 
-    <TextView
+    <Button
         android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
