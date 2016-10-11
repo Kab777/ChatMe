@@ -11,6 +11,7 @@ public class MMConstant {
     public static final String USERS = "Users";
     public static final String Groups = "Groups";
     public static final String USER_ID = "userId";
+    public static final String USER_NAME = "userName";
     public static final String GROUP_ID = "groupId";
     public static final String NAME = "name";
     public static final String EMAIL = "email";
@@ -27,5 +28,7 @@ public class MMConstant {
     public static final String AMOUNT = "amount";
     public static final String TAG = "tag";
     public static final String INCOME = "income";
+    public static final String TIMESTAMP = "timestamp";
+
 
 }
