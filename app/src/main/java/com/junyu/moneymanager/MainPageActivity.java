@@ -56,7 +56,9 @@ public class MainPageActivity extends AppCompatActivity {
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.submitGroupId) Button submitGroupId;
     @BindView(R.id.createGroup) Button createGroup;
+    @BindView(R.id.logOut) Button logOut;
     @BindView(R.id.newGroupText) EditText newGroupName;
+
 
     private DatabaseReference fireDb;
     private Map<String, String> groupIdNames = new HashMap<>();
@@ -82,18 +84,23 @@ public class MainPageActivity extends AppCompatActivity {
 
     @OnClick(R.id.createGroup)
     public void createGroupPage() {
-        final String curGroupName = newGroupName.getText().toString();
+        final String curGroupName = newGroupName.getText().toString().trim();
+        if (curGroupName.isEmpty()) {
+            Toast.makeText(MainPageActivity.this, "Group Name can't be empty",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
         DatabaseReference gNameQuery = fireDb
-                .child(GROUPNAME);
+                .child(GROUPNAMEC);
         gNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Timber.v(dataSnapshot.getKey().toString());
-                Timber.v(dataSnapshot.toString());
+
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     String tempGroupName = child.getValue().toString();
-                    if (tempGroupName == curGroupName) {
+
+                    if (tempGroupName.equals(curGroupName)) {
                         Toast.makeText(MainPageActivity.this, "Group Name already Exists, please try" +
                                         " a new one",
                                 Toast.LENGTH_SHORT).show();
@@ -112,12 +119,24 @@ public class MainPageActivity extends AppCompatActivity {
         });
     }
 
+    @OnClick(R.id.logOut)
+    public void logOut(){
+        MMUserPreference.cleanSharedPreferences(this);
+        Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
     private void addGroupToServer(String curGroupName) {
+        //GroupName Entry
         DatabaseReference groupNameDb = fireDb
                 .child(GROUPNAMEC);
         String newGroupId = groupNameDb.push().getKey();
-        groupNameDb.push().setValue(curGroupName);//GroupName Entry
 
+
+        groupNameDb.push().setValue(curGroupName);
+        //Groups Entry
         DatabaseReference groupSDb = fireDb
                 .child(Groups);
 
@@ -128,7 +147,21 @@ public class MainPageActivity extends AppCompatActivity {
         groupInfo.put(MEMBERS, new HashMap<String, Boolean>() {{
             put(MMUserPreference.getUserName(context), true);
         }});
+
         groupSDb.child(newGroupId).setValue(groupInfo);
+
+        //User Entry
+        DatabaseReference userSDb = fireDb
+                .child(USERS);
+
+//        Map<String, Object> userInfo = new HashMap<>();
+//
+//        userInfo.put(newGroupId, curGroupName);
+        userSDb.child(MMUserPreference.getUserId(this)).child(GROUP_ID).child(newGroupId).setValue(curGroupName);
+
+        Toast.makeText(MainPageActivity.this, "Congratulations ! new Group has been created",
+                Toast.LENGTH_SHORT).show();
+        newGroupName.setText("");
     }
 
     @Override
@@ -144,9 +177,11 @@ public class MainPageActivity extends AppCompatActivity {
         fireDb = FirebaseDatabase.getInstance().getReference();
 
         DatabaseReference myRef = fireDb.child(MMConstant.USERS).child(MMUserPreference.getUserId(this));//.child(GROUP_ID)
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                groupIdNames.clear();
+                groupNames.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     if (child.getKey().equals(GROUP_ID)) {
@@ -184,4 +219,6 @@ public class MainPageActivity extends AppCompatActivity {
 
 
     }
+
+
 }
