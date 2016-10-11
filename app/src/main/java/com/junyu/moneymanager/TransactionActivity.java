@@ -32,6 +32,7 @@ import static com.junyu.moneymanager.MMConstant.GROUP_ID;
 
 public class TransactionActivity extends AppCompatActivity {
     @BindView(R.id.addTransaction) Button addTransaction;
+    @BindView(R.id.transactionRecord) ListView transactionRecord;
     private FirebaseDatabase database;
     private DatabaseReference group;
     private DatabaseReference transaction;
@@ -55,12 +56,11 @@ public class TransactionActivity extends AppCompatActivity {
         group = database.getReference(MMConstant.GROUPS);
         transaction = database.getReference(MMConstant.TRANSACTIONS);
 
-        ListView lv = (ListView) findViewById(R.id.transactionRecord);
-        recordArray = new ArrayList<String>();
+        recordArray = new ArrayList<>();
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, recordArray);
 
-        lv.setAdapter(arrayAdapter);
+        transactionRecord.setAdapter(arrayAdapter);
         Intent intent = getIntent();
         groupId = intent.getStringExtra(GROUP_ID);
 
