@@ -56,7 +56,9 @@ public class MainPageActivity extends AppCompatActivity {
     @BindView(R.id.progressBar) ProgressBar progressBar;
     @BindView(R.id.submitGroupId) Button submitGroupId;
     @BindView(R.id.createGroup) Button createGroup;
+    @BindView(R.id.logOut) Button logOut;
     @BindView(R.id.newGroupText) EditText newGroupName;
+
 
     private DatabaseReference fireDb;
     private Map<String, String> groupIdNames = new HashMap<>();
@@ -115,6 +117,15 @@ public class MainPageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @OnClick(R.id.logOut)
+    public void logOut(){
+        MMUserPreference.cleanSharedPreferences(this);
+        Intent intent = new Intent(MainPageActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void addGroupToServer(String curGroupName) {

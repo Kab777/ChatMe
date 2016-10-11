@@ -23,4 +23,9 @@ public class MMUserPreference {
         SharedPreferences sharedPreferences = context.getSharedPreferences(MMConstant.PREFERENCE_NAME, context.MODE_PRIVATE);
         return sharedPreferences.contains(MMConstant.USER_ID);
     }
+
+    public static void cleanSharedPreferences(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MMConstant.PREFERENCE_NAME, context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().commit();
+    }
 }
