@@ -15,8 +15,17 @@ public class MMConstant {
     public static final String NAME = "name";
     public static final String EMAIL = "email";
     public static final String PREFERENCE_NAME = "userInfo";
-    public static final String BALANCE = "balance";
+
     public static final String GROUPNAME = "groupName";
     public static final String GROUPNAMEC = "GroupName";
     public static final String MEMBERS = "members";
+
+    public static final String EXPENSE = "expense";
+    public static final String BALANCE = "balance";
+    public static final String GROUPS = "Groups";
+    public static final String TRANSACTIONS = "Transactions";
+    public static final String AMOUNT = "amount";
+    public static final String TAG = "tag";
+    public static final String INCOME = "income";
+
 }
