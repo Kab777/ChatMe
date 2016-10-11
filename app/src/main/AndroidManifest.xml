@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".MainPage"></activity>
+        <activity android:name=".MainPageActivity"></activity>
         <activity android:name=".GroupPageActivity"></activity>
     </application>
 

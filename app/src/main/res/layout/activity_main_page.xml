@@ -4,29 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="Loading..." />
-
-    <Spinner
-        android:id="@+id/groupSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userName"/>
-
-    <Button
-        android:id="@+id/submitGroupId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/groupSpinner"
-        android:layout_centerInParent="true"
-        android:background="#CCFFFF"
-        android:text="Go To Group Page" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
@@ -34,5 +11,56 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Loading..." />
+
+        <Spinner
+            android:id="@+id/groupSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/submitGroupId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="25dp"
+            android:background="#CCFFFF"
+            android:text="Go To Group Page" />
+
+        <TextView
+            android:id="@+id/createText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="Doesn't have a group? Create one Now" />
+
+        <EditText
+            android:id="@+id/newGroupText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="Enter new Group Name here" />
+
+        <Button
+            android:id="@+id/createGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Now" />
+    </LinearLayout>
+
 
 </RelativeLayout>

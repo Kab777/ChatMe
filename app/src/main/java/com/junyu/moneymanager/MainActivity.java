@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,17 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
-import static android.R.attr.password;
 import static com.junyu.moneymanager.MMConstant.PREFERENCE_NAME;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (MMUserPreference.ifUserRegistered(this)) {
-            Intent intent = new Intent(MainActivity.this, MainPage.class);
+            Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
             startActivity(intent);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             finish();
@@ -87,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                         editor.putString(MMConstant.USER_ID, task.getResult().getUser().getUid());
                                         editor.commit();
 
-                                        Intent intent = new Intent(MainActivity.this, MainPage.class);
+                                        Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         finish();
