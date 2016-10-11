@@ -64,8 +64,6 @@ public class GroupPageActivity extends AppCompatActivity {
     private ArrayList<String> groupMems = new ArrayList<>();
     private AddNewMemberDialog addNewMemberDialog;
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +110,15 @@ public class GroupPageActivity extends AppCompatActivity {
             }
         });
 
+
+        gotoTranH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GroupPageActivity.this, TransactionActivity.class);
+                intent.putExtra(GROUP_ID, groupId);
+                startActivity(intent);
+            }
+        });
 
     }
 }

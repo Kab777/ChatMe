@@ -18,9 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"></activity>
+
         <activity android:name=".MainPageActivity"></activity>
         <activity android:name=".GroupPageActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".TransactionActivity"></activity>
+
     </application>
 
 </manifest>

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">MoneyManager</string>
+
+    <string name="group_prompt">Choose a group</string>
+
+
+    <string name="transaction_prompt">Choose a transaction type</string>
+
+    <string-array name="transaction_arrays">
+        <item>income</item>
+        <item>expense</item>
+    </string-array>
+
+    <string name="tag_prompt">Choose a group</string>
+
+    <string-array name="tag_arrays">
+        <item>food</item>
+        <item>transportation</item>
+        <item>clothes</item>
+    </string-array>
+
 </resources>
