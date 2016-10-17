@@ -13,10 +13,15 @@
 
     <string name="tag_prompt">Choose a group</string>
 
+
     <string-array name="tag_arrays">
         <item>food</item>
         <item>transportation</item>
         <item>clothes</item>
     </string-array>
+
+    <string name="GothamBold">fonts/Gotham-Bold.otf</string>
+    <string name="GothamMedium">fonts/Gotham-Medium.otf</string>
+
 
 </resources>
