@@ -1,4 +1,4 @@
-package com.junyu.moneymanager;
+package com.junyu.CorpBudge;
 
 import org.junit.Test;
 

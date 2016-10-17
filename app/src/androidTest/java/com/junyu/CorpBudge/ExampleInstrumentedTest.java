@@ -1,4 +1,4 @@
-package com.junyu.moneymanager;
+package com.junyu.CorpBudge;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
