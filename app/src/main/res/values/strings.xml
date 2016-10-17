@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoneyManager</string>
+    <string name="app_name">CorpBudget</string>
 
     <string name="group_prompt">Choose a group</string>
 
@@ -23,5 +23,24 @@
     <string name="GothamBold">fonts/Gotham-Bold.otf</string>
     <string name="GothamMedium">fonts/Gotham-Medium.otf</string>
 
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about_us">About Us</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Chat</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
