@@ -6,4 +6,7 @@
 
 
     <color name="oceanBlue">#67A1FF</color>
+    <color name="onlineStatus">#008000</color>
+    <color name="offlineStatus">#808080</color>
+
 </resources>
