@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CorpBudget</string>
+    <string name="app_name">IMBudget</string>
 
     <string name="group_prompt">Choose a group</string>
 
