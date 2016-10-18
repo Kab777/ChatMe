@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/recipientDate"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
+        android:text="SEP 7, 23:20"
+        android:textColor="@color/gray"/>
 
     <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/recipientMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/recipientDate"
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rearecipient_rounded_corner"
+        android:fontFamily="sans-serif"
         android:padding="8dp"
         android:text="Have a good day!"
         android:textColor="#727272"
