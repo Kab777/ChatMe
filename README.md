@@ -1,3 +1,3 @@
-# MoneyManager
+# IMBudget
 
-An app that manages group expense
+IMBudget is an app that allows users to send instant message
