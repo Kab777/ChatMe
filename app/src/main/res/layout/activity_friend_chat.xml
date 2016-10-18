@@ -24,7 +24,7 @@
         android:paddingTop="8dp">
 
 
-        <com.junyu.CorpBudge.widgets.CpEditText
+        <com.junyu.IMBudget.widgets.CpEditText
             android:id="@+id/userMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
