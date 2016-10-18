@@ -17,7 +17,7 @@
         android:src="@drawable/ic_person_black_24dp"/>
 
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:textSize="20sp"
         app:font="@string/GothamMedium"/>
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:textSize="14sp"
         android:visibility="invisible"/>
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

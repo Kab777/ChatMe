@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/recipientMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

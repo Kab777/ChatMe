@@ -6,7 +6,7 @@
               android:orientation="vertical">
 
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:textSize="20sp"
         app:font="@string/GothamMedium"/>
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

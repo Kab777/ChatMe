@@ -7,7 +7,7 @@
               android:orientation="vertical"
               android:padding="16dp">
 
-    <com.junyu.CorpBudge.widgets.CpTextView
+    <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
