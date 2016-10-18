@@ -29,27 +29,37 @@
         app:font="@string/GothamMedium"/>
 
     <com.junyu.CorpBudge.widgets.CpTextView
-        android:id="@+id/online"
+        android:id="@+id/acceptRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
-        android:text="online"
-        android:textColor="@color/onlineStatus"
-        android:textSize="14sp"
-        android:visibility="invisible"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/doneGreen"
+        android:gravity="center"
+        android:padding="6dp"
+        android:src="@drawable/ic_done_white_24dp"
+        android:text="Accept"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:font="@string/GothamMedium"
+        />
 
     <com.junyu.CorpBudge.widgets.CpTextView
-        android:id="@+id/offline"
+        android:id="@+id/added"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
-        android:text="offline"
-        android:textColor="@color/offlineStatus"
-        android:textSize="14sp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="Added"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:font="@string/GothamMedium"
+        />
 
     <View
         android:layout_width="match_parent"
