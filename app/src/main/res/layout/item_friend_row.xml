@@ -3,9 +3,9 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:checked="true">
 
 
     <ImageView
@@ -37,6 +37,8 @@
         android:layout_marginTop="4dp"
         android:text="online"
         android:textColor="@color/onlineStatus"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
         android:textSize="14sp"
         android:visibility="invisible"/>
 
@@ -48,6 +50,8 @@
         android:layout_marginRight="4dp"
         android:layout_marginTop="4dp"
         android:text="offline"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
         android:textColor="@color/offlineStatus"
         android:textSize="14sp"/>
 
