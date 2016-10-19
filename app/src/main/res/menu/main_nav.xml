@@ -2,14 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+        <!--
         <item
             android:id="@+id/nav_home"
             android:checked="true"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Home"/>
-
+            -->
         <item
             android:id="@+id/nav_chat"
+            android:checked="true"
             android:icon="@drawable/ic_chat_black_24dp"
             android:title="Chat"/>
 
@@ -17,11 +19,13 @@
             android:id="@+id/nav_friendRequests"
             android:icon="@drawable/ic_group_add_black_24dp"
             android:title="New Friend Requests"/>
+
+        <item
+            android:id="@+id/nav_logOut"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Log Out"/>
+
     </group>
-
-    <item android:title="Communicate">
-
-    </item>
 
 
 </menu>
