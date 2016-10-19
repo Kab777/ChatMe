@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "575920433800",
-    "firebase_url": "https://moneymanager-3e83d.firebaseio.com",
-    "project_id": "moneymanager-3e83d",
-    "storage_bucket": "moneymanager-3e83d.appspot.com"
+    "project_number": "447219052003",
+    "firebase_url": "https://imbudget-55727.firebaseio.com",
+    "project_id": "imbudget-55727",
+    "storage_bucket": "imbudget-55727.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:575920433800:android:2023142e437abfc9",
+        "mobilesdk_app_id": "1:447219052003:android:a4fb73b2ef0bd92a",
         "android_client_info": {
-          "package_name": "com.junyu.moneymanager"
+          "package_name": "com.junyu.IMBudget"
         }
       },
       "oauth_client": [
         {
-          "client_id": "575920433800-l9djpl5gls1ifb3u0psn50m8bisf6io5.apps.googleusercontent.com",
+          "client_id": "447219052003-e3v83d936adi5vd7q5dor735junab02u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAbumjMU2W5ihsnNBb7AA69MuesLqSfmuA"
+          "current_key": "AIzaSyCD4jL3gQxv8FAqNl2R0ex_h1aVUjvqM64"
         }
       ],
       "services": {
