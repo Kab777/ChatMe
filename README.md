@@ -1,4 +1,4 @@
-# IMBudget
+# ChatMe
 
 An app that allows users to send instant message.
 
