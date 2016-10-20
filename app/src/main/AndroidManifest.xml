@@ -7,7 +7,7 @@
 
 
     <application
-        android:name=".MoneyManagerApplication"
+        android:name=".ChatMeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="Log In"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".MainPageActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"/>
         <activity
             android:name=".GroupPageActivity"
             android:screenOrientation="portrait"/>
@@ -44,7 +45,8 @@
         <activity
             android:name=".activity.ActivityFriendChat"
             android:label="Chat"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
