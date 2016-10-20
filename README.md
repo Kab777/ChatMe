@@ -1,6 +1,7 @@
 # ChatMe
 
 An app that allows users to send instant message.
+Support local cache.
 
 It follows google material design. 
 
