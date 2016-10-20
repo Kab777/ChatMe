@@ -1,5 +1,7 @@
 # ChatMe
 
+Play Store link [ChatMe](https://play.google.com/store/apps/details?id=com.junyu.IMBudget)
+
 An app that allows users to send instant message.
 Support local cache.
 
