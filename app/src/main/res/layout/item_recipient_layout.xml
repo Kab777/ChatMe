@@ -26,7 +26,10 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rearecipient_rounded_corner"
         android:fontFamily="sans-serif"
-        android:padding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="Have a good day!"
         android:textColor="#727272"
         android:textSize="18sp"/>

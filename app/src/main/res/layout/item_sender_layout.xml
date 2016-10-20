@@ -29,7 +29,10 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/sender_rounder_corner"
         android:fontFamily="sans-serif"
-        android:padding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="Okay!"
         android:textColor="#FFFFFF"
         android:textSize="18sp"/>
