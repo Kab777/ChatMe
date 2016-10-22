@@ -43,14 +43,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userName"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/userImage"
-        android:layout_toLeftOf="@+id/status_text"
+        android:layout_toLeftOf="@+id/onlineStatus"
+        android:layout_toRightOf="@id/userImage"
+        android:ellipsize="end"
         android:fontFamily="sans-serif"
-        android:text="Lastest chat "
+        android:maxLines="1"
+        android:text="Hey, do you want to hear a joke about five levels of fatnessaaaaaaaa"
         android:textColor="#898686"
         android:textSize="15sp"
         />
+
+    <TextView
+        android:id="@+id/newMsgBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"/>
 
     <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/lastMsgTime"
@@ -62,34 +76,38 @@
         android:text=""
         android:textSize="12sp"/>
 
-    <com.junyu.IMBudget.widgets.CpTextView
-        android:id="@+id/online"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/lastMsgTime"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif"
-        android:text="online"
-        android:textColor="@color/onlineStatus"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:visibility="invisible"/>
 
-    <com.junyu.IMBudget.widgets.CpTextView
-        android:id="@+id/offline"
+    <RelativeLayout
+        android:id="@+id/onlineStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/lastMsgTime"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif"
-        android:text="offline"
-        android:textColor="@color/offlineStatus"
-        android:textSize="14sp"
-        android:textStyle="bold"/>
+        android:layout_marginTop="8dp">
+
+        <com.junyu.IMBudget.widgets.CpTextView
+            android:id="@+id/online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="online"
+            android:textColor="@color/onlineStatus"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <com.junyu.IMBudget.widgets.CpTextView
+            android:id="@+id/offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="offline"
+            android:textColor="@color/offlineStatus"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
 
     <View
         android:id="@+id/divideLine"

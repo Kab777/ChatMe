@@ -20,5 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your friend's email here"
-        android:inputType="text"/>
+        android:inputType="textEmailAddress"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/userMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="I'm "
+        android:inputType="text"
+        android:maxLines="1"/>
 </LinearLayout>
