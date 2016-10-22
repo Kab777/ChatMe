@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="#a7cbf9"
+    android:background="@drawable/ocean"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -13,32 +13,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.junyu.IMBudget.widgets.CpCircleImage
+        android:id="@+id/userImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/ic_account_circle_black_48dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="0.5dp"
         />
 
     <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:text="Android Studio"
         android:textColor="#FFFFFF"
+        android:textSize="15sp"
         app:font="@string/GothamMedium"
         />
 
     <TextView
         android:id="@+id/userEmail"
-        android:fontFamily="serif"
-        android:textSize="12sp"
-        android:textColor="#ebeff4"
-        android:gravity="center"
-        android:text="jy@gmail.com"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="jy@gmail.com"
+        android:textColor="#ebeff4"
+        android:textSize="12sp"
         />
 
 </LinearLayout>

@@ -37,6 +37,13 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.google.firebase:firebase-database:9.6.1'
     compile 'com.google.firebase:firebase-auth:9.6.1'
+    compile 'com.google.firebase:firebase-storage:9.6.1'
+    //Circle ImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile 'com.pnikosis:materialish-progress:1.7'
     compile 'com.kelvinapps:rxfirebase:0.0.15'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.jakewharton.timber:timber:4.3.1'
