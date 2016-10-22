@@ -13,13 +13,16 @@
     >
 
 
-    <ImageView
+    <com.junyu.IMBudget.widgets.CpCircleImage
         android:id="@+id/userImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_person_black_24dp"/>
+        android:src="@drawable/ic_person_black_24dp"
+        app:civ_border_color="#000000"
+        app:civ_border_width="0.5dp"
+        />
 
 
     <com.junyu.IMBudget.widgets.CpTextView
@@ -42,6 +45,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/userImage"
+        android:layout_toLeftOf="@+id/status_text"
         android:fontFamily="sans-serif"
         android:text="Lastest chat "
         android:textColor="#898686"
@@ -53,19 +57,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:fontFamily="sans-serif"
-        android:textSize="12sp"
         android:layout_marginRight="5dp"
-        android:text=""/>
+        android:fontFamily="sans-serif"
+        android:text=""
+        android:textSize="12sp"/>
 
     <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/online"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/lastMsgTime"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:text="online"
         android:textColor="@color/onlineStatus"
@@ -77,10 +81,10 @@
         android:id="@+id/offline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/lastMsgTime"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:text="offline"
         android:textColor="@color/offlineStatus"
