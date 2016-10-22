@@ -7,3 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+app/src/test/java/com/junyu/IMBudget/ExampleUnitTest.java
+app/app-release.apk
+.idea/vcs.xml
+.idea/encodings.xml

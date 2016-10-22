@@ -9,11 +9,12 @@ android {
         applicationId "com.junyu.IMBudget"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 5
-        versionName "1.13"
+        versionCode 6
+        versionName "1.14"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
         debug {
             minifyEnabled false
