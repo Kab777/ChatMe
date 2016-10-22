@@ -7,7 +7,7 @@ Support local cache.
 
 It follows google material design. 
 
-#**V 1.13** Release notes
+#**V 1.14** Release notes
 
 * Added instant message content/time sync on user's friend list
 * User should be able to upload profile image now
@@ -17,5 +17,5 @@ It follows google material design.
 
 ![](demoPhotos/sideMenu.jpg?raw=true "Chat Menu")
 ![](demoPhotos/newChatDemo.jpg?raw=true "Chat Screen")
-![](demoPhotos/requestDemo.jpg?raw=true "request Screen")
+![](demoPhotos/friendRequests.jpg?raw=true "request Screen")
 ![](demoPhotos/addFriendDemo.jpg?raw=true "addFriend Screen")
