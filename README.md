@@ -9,7 +9,10 @@ It follows google material design.
 
 #**V 1.13** Release notes
 
-* Add instant message content/time sync on user's friend list
+* Added instant message content/time sync on user's friend list
+* User should be able to upload profile image now
+* Added share button
+* Bug fixing, minor style change
 
 
 ![](demoPhotos/menu.jpg?raw=true "Chat Menu")
