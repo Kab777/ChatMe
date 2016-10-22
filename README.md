@@ -1,9 +1,16 @@
 # ChatMe
 
+Play Store link [ChatMe](https://play.google.com/store/apps/details?id=com.junyu.IMBudget)
+
 An app that allows users to send instant message.
 Support local cache.
 
 It follows google material design. 
+
+#**V 1.13** Release notes
+
+* Add instant message content/time sync on user's friend list
+
 
 ![](demoPhotos/menu.jpg?raw=true "Chat Menu")
 ![](demoPhotos/newChatDemo.jpg?raw=true "Chat Screen")
