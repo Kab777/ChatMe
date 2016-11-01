@@ -7,3 +7,4 @@
 /build
 /captures
 .externalNativeBuild
+app/src/test/java/com/junyu/IMBudget/ExampleUnitTest.java
