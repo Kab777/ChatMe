@@ -10,11 +10,11 @@ It supports local cache.
 
 It follows google material design. 
 
-*V 1.15* Release notes
+**V 1.15** Release notes
 
 * Added Chat Bot
 
-*V 1.14* Release notes
+**V 1.14** Release notes
 
 * Added instant message content/time sync on user's friend list
 * User should be able to upload profile image now
