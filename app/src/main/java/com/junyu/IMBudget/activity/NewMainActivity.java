@@ -119,11 +119,11 @@ public class NewMainActivity extends AppCompatActivity
         setTitle(navigationView.getMenu().getItem(0).getTitle());
 
         String imgUrl = MMUserPreference.getUserImg(this);
-        Timber.v(imgUrl);
+
         if (imgUrl != null && !imgUrl.equals("")) {
             Picasso.with(this).load(imgUrl).into(profileImg);
         }
-//        profileImg.setImageBitmap(profilePic);
+
 
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +177,9 @@ public class NewMainActivity extends AppCompatActivity
             case R.id.navChat:
                 fragmentClass = FragmentChat.class;
                 break;
+//            case R.id.navGroup:
+//                fragmentClass = FragmentGroup.class;
+//                break;
             case R.id.navFriendRequests:
                 fragmentClass = FragmentFriendRequests.class;
                 break;

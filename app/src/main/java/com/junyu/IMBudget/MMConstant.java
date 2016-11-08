@@ -23,6 +23,9 @@ public class MMConstant {
     public static final String ACCEPTED = "accepted";
     public static final String FRIEND_REQUESTS = "friendRequests";
     public static final String PREFERENCE_NAME = "userInfo";
+    public static final String MUNDO_ID = "MMz6gRRrrMQLo5po51m2Vhdwj7M2";
+    public static final String MUNDO_NAME = "Chatmundo";
+    public static final String MUNDO_IMAGE = "https://firebasestorage.googleapis.com/v0/b/imbudget-55727.appspot.com/o/profileImages%2FMMz6gRRrrMQLo5po51m2Vhdwj7M2.jpg?alt=media&token=c1da881f-d2dd-4034-83ee-0ef8385153f5";
 
     public static final String GROUPNAME = "groupName";
     public static final String GROUPNAMEC = "GroupName";
@@ -39,6 +42,10 @@ public class MMConstant {
     public static final String TIMESTAMP = "timestamp";
 
     public static final String ID_EMAIL_MAP = "IdEmailMap";
+
+
+    public static final String CHAT_BOT_ID = "12";
+    public static final String MSG_FORMAT = "json";
 
 
 }
