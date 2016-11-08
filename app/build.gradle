@@ -1,16 +1,21 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'android-apt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
 
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
+
+
+
     defaultConfig {
         applicationId "com.junyu.IMBudget"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.14"
+        versionCode 7
+        versionName "1.16"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -23,7 +28,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+         }
     }
 }
 
@@ -44,12 +49,32 @@ dependencies {
 
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    compile 'io.reactivex:rxandroid:1.2.1'
+// Because RxAndroid releases are few and far between, it is recommended you also
+// explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.2.2'
+
+// And ProGuard rules for RxJava!
+    compile 'com.artemzin.rxjava:proguard-rules:1.2.2.0'
+
+
+    apt 'com.google.dagger:dagger-compiler:2.7'
+    compile 'com.google.dagger:dagger:2.7'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
     compile 'com.pnikosis:materialish-progress:1.7'
-    compile 'com.kelvinapps:rxfirebase:0.0.15'
+
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.jakewharton.timber:timber:4.3.1'
     compile 'com.google.code.gson:gson:2.7'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }
-apply plugin: 'com.google.gms.google-services'

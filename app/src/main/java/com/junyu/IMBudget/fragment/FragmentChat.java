@@ -31,9 +31,8 @@ import com.junyu.IMBudget.activity.ActivityFriendChat;
 import com.junyu.IMBudget.dialog.SendFriendRequestDialog;
 import com.junyu.IMBudget.model.Friend;
 import com.junyu.IMBudget.model.MessageChatModel;
-import com.junyu.IMBudget.rxJava.SimpleObserver;
-import com.kelvinapps.rxfirebase.RxFirebaseChildEvent;
-import com.kelvinapps.rxfirebase.RxFirebaseDatabase;
+
+
 import com.pnikosis.materialishprogress.ProgressWheel;
 import com.squareup.picasso.Picasso;
 
@@ -46,8 +45,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observable;
-import rx.functions.Func1;
+
 import timber.log.Timber;
 
 import static android.R.attr.id;
@@ -57,6 +55,7 @@ import static com.junyu.IMBudget.MMConstant.CHAT_ID;
 import static com.junyu.IMBudget.MMConstant.FRIENDS;
 import static com.junyu.IMBudget.MMConstant.MESSAGES;
 import static com.junyu.IMBudget.MMConstant.NAME;
+import static com.junyu.IMBudget.MMConstant.USER_ID;
 import static com.junyu.IMBudget.R.color.onlineStatus;
 import static com.junyu.IMBudget.utils.Time.formateDateFromFriendScreen;
 
@@ -283,6 +282,7 @@ public class FragmentChat extends Fragment {
                     Intent intent = new Intent(getContext(), ActivityFriendChat.class);
                     intent.putExtra(CHAT_ID, friend.getChatId());
                     intent.putExtra(NAME, friend.getName());
+                    intent.putExtra(USER_ID, friend.getUserId());
                     startActivity(intent);
                 }
             });

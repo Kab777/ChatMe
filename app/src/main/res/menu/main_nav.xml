@@ -15,6 +15,7 @@
             android:icon="@drawable/ic_chat_black_24dp"
             android:title="Chat"/>
 
+
         <item
             android:id="@+id/navFriendRequests"
             android:icon="@drawable/ic_group_add_black_24dp"
@@ -31,6 +32,8 @@
             android:id="@+id/navShare"
             android:icon="@drawable/ic_share_black_24dp"
             android:title="Invite Friends"/>
+
+
 
         <!--<item-->
             <!--android:id="@+id/navSetting"-->
