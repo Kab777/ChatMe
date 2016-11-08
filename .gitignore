@@ -12,3 +12,4 @@ app/app-release.apk
 .idea/vcs.xml
 .idea/encodings.xml
 .gitattributes
+app/google-services.json
