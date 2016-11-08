@@ -1,6 +1,7 @@
 package com.junyu.IMBudget.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +33,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import timber.log.Timber;
 
 import static com.junyu.IMBudget.MMConstant.ACCEPTED;
 import static com.junyu.IMBudget.MMConstant.CHAT_ID;
@@ -48,6 +53,17 @@ import static com.junyu.IMBudget.MMConstant.USER_ID;
 
 public class FragmentFriendRequests extends Fragment {
     @BindView(R.id.friendRequests) RecyclerView rvFriendRequests;
+    @BindView(R.id.noFriendMsg) RelativeLayout noFriendMsg;
+
+    @OnClick(R.id.inviteFriend)
+    public void sendInvitation() {
+        String msg = "Let's meet on ChatMe !\n";
+        String url = "https://play.google.com/store/apps/details?id=com.junyu.IMBudget";
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, msg + url);
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(intent, "Choose a way to share"));
+    }
 
     private DatabaseReference fireDb;
     private String userId;
@@ -63,6 +79,56 @@ public class FragmentFriendRequests extends Fragment {
         super.onCreate(savedInstanceState);
         fireDb = FirebaseDatabase.getInstance().getReference();
         userId = MMUserPreference.getUserId(getContext());
+
+        DatabaseReference friendDb = fireDb.child(MMConstant.USERS).child(userId).child(FRIEND_REQUESTS);
+
+        friendDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() == null) {
+                    noFriendMsg.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference friendRequestDb = fireDb.child(MMConstant.USERS).child(userId).child(FRIEND_REQUESTS);
+        friendRequestDb.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                noFriendMsg.setVisibility(View.GONE);
+                Timber.v(dataSnapshot.toString());
+                FriendRequest newFriend = dataSnapshot.getValue(FriendRequest.class);
+                newFriend.setSenderId(dataSnapshot.getKey());
+                friendRequests.add(newFriend);
+                friendRequestsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
@@ -79,30 +145,6 @@ public class FragmentFriendRequests extends Fragment {
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        DatabaseReference friendRequestDb = fireDb.child(MMConstant.USERS).child(userId).child(FRIEND_REQUESTS);
-        // change it to child listener later to make it more efficient
-        friendRequestDb.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                friendRequests.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    FriendRequest newFriend = child.getValue(FriendRequest.class);
-                    newFriend.setSenderId(child.getKey());
-                    friendRequests.add(newFriend);
-
-                }
-                friendRequestsAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAdapter.ViewHolder> {
         private List<FriendRequest> friendRequests;

@@ -17,10 +17,11 @@ public class FriendRequest {
 
     }
 
-    public FriendRequest(Boolean accepted, String chatId, String name) {
+    public FriendRequest(Boolean accepted, String chatId, String name, String requestMsg) {
         this.accepted = accepted;
         this.chatId = chatId;
         this.name = name;
+        this.requestMsg = requestMsg;
     }
 
     public Boolean getAccepted() {

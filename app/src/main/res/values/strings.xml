@@ -44,8 +44,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_friend_chat">ActivityFriendChat</string>
 
-    <string name="noFriendMsg">Oops, looks like you don\'t have any friend yet.\n
-        Add a friend by clicking button at bottom right of the screen\n Or
+    <string name="noFriendMsg">Oops, looks like you don\'t have any friend request yet.\n
+        Add a friend by clicking button at bottom right of the "Chat" screen\n Or
         invite your friend now!</string>
 
 </resources>

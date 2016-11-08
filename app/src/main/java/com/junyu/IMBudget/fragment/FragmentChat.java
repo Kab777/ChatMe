@@ -66,7 +66,7 @@ public class FragmentChat extends Fragment {
     @BindView(R.id.rvFriends) RecyclerView rvFriends;
     @BindView(R.id.addFriend) FloatingActionButton addFriend;
     @BindView(R.id.progress) ProgressWheel progressWheel;
-    @BindView(R.id.noFriendMsg) RelativeLayout noFriendMsg;
+
 
 
     @OnClick(R.id.addFriend)
@@ -76,15 +76,7 @@ public class FragmentChat extends Fragment {
         dialog.show();
     }
 
-    @OnClick(R.id.inviteFriend)
-    public void sendInvitation() {
-        String msg = "Let's meet on ChatMe !\n";
-        String url = "https://play.google.com/store/apps/details?id=com.junyu.IMBudget";
-        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, msg + url);
-        intent.setType("text/plain");
-        startActivity(Intent.createChooser(intent, "Choose a way to share"));
-    }
+
 
     private ArrayList<Friend> friends = new ArrayList<>();
     private HashMap<String, Integer> friendsIdPMap = new HashMap<>();
@@ -130,27 +122,12 @@ public class FragmentChat extends Fragment {
         userId = MMUserPreference.getUserId(getContext());
         DatabaseReference friendDb = fireDb.child(MMConstant.USERS).child(userId).child(FRIENDS);
 
-        friendDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() == null) {
-                    progressWheel.setVisibility(View.GONE);
-                    noFriendMsg.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         friendDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Timber.v(dataSnapshot.toString());
                 progressWheel.setVisibility(View.GONE);
-                noFriendMsg.setVisibility(View.GONE);
+
                 final Friend newFriend = dataSnapshot.getValue(Friend.class);
                 friendsIdPMap.put(newFriend.getChatId(), userCounter);
                 friends.add(newFriend);
