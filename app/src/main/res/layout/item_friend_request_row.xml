@@ -16,10 +16,11 @@
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_person_black_24dp"
+        android:src="@drawable/ic_face_profile"
         app:civ_border_color="#000000"
         app:civ_border_width="0.5dp"
         />
+
     <com.junyu.IMBudget.widgets.CpTextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
@@ -40,49 +41,56 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
-        android:layout_toLeftOf="@+id/acceptRequest"
+        android:layout_toLeftOf="@+id/leftPanel"
+
         android:layout_toRightOf="@id/userImage"
         android:ellipsize="end"
         android:fontFamily="sans-serif"
         android:maxLines="1"
-        android:text=""
+        android:text="Hey, do you want to hear a joke about five levels of fatnessaaaaaaaa"
         android:textColor="#898686"
         android:textSize="15sp"
         />
 
 
-    <com.junyu.IMBudget.widgets.CpTextView
-        android:id="@+id/acceptRequest"
+    <RelativeLayout
+        android:id="@+id/leftPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/doneGreen"
-        android:gravity="center"
-        android:padding="6dp"
-        android:src="@drawable/ic_done_white_24dp"
-        android:text="Accept"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:font="@string/GothamMedium"
-        />
+        android:layout_alignParentRight="true">
 
-    <com.junyu.IMBudget.widgets.CpTextView
-        android:id="@+id/added"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:padding="6dp"
-        android:text="Added"
-        android:textColor="@color/gray"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:font="@string/GothamMedium"
-        />
+        <com.junyu.IMBudget.widgets.CpTextView
+            android:id="@+id/acceptRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/doneGreen"
+            android:gravity="center"
+            android:padding="6dp"
+            android:src="@drawable/ic_done_white_24dp"
+            android:text="Accept"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:font="@string/GothamMedium"
+            />
+
+        <com.junyu.IMBudget.widgets.CpTextView
+            android:id="@+id/added"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="Added"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:font="@string/GothamMedium"
+            />
+
+    </RelativeLayout>
 
     <View
         android:id="@+id/divideLine"

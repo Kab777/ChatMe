@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -47,19 +48,23 @@ import static com.junyu.IMBudget.MMConstant.ONLINE;
 import static com.junyu.IMBudget.MMConstant.PREFERENCE_NAME;
 import static com.junyu.IMBudget.MMConstant.TIMESTAMP;
 import static com.junyu.IMBudget.MMConstant.USER_ID;
+import static com.junyu.IMBudget.R.id.userName;
 
 /**
  * Created by Junyu on 10/9/2016.
  */
 
 public class SignUpActivity extends AppCompatActivity {
-    @BindView(R.id.userName) EditText userName;
+    @BindView(R.id.userFistName) EditText userFistName;
+    @BindView(R.id.userLastName) EditText userLastName;
     @BindView(R.id.userEmail) EditText userEmail;
     @BindView(R.id.userPassword) EditText userPassWord;
     @BindView(R.id.signUpButton) Button signUpButton;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference fireDb;
-    private String userPersonalName = "";
+    private String firstName = "";
+    private String lastName = "";
+    private String fullName = "";
     private String userEmailAddress = "";
     SharedPreferences sharedpreferences;
 
@@ -67,20 +72,22 @@ public class SignUpActivity extends AppCompatActivity {
     public void signUp() {
         String password = userPassWord.getText().toString();
         userEmailAddress = userEmail.getText().toString().trim();
-        userPersonalName = userName.getText().toString().trim();
+        firstName = userFistName.getText().toString().trim();
+        lastName = userLastName.getText().toString().trim();
 
 
-        int spaceIndex = userPersonalName.indexOf(" ");
 
-        if (spaceIndex == -1) {
+
+        if (firstName.contains(" ") || lastName.contains(" ")) {
             Toast toast = Toast.makeText(SignUpActivity.this,
-                    "Please enter first and last names.", Toast.LENGTH_SHORT);
+                    "Please Enter valid name", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
-        } else if (password.isEmpty() || userEmailAddress.isEmpty() || userPersonalName.isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "can't be empty",
+        } else if (password.isEmpty() || userEmailAddress.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
+            Toast.makeText(SignUpActivity.this, "field can't be empty",
                     Toast.LENGTH_SHORT).show();
         } else {
+            fullName = firstName + " " + lastName;
             firebaseAuth.createUserWithEmailAndPassword(userEmailAddress, password)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -97,18 +104,18 @@ public class SignUpActivity extends AppCompatActivity {
                                 fireDb = FirebaseDatabase.getInstance().getReference();
                                 DatabaseReference myRef = fireDb.child(MMConstant.USERS).child(userId);
                                 Map<String, String> userInfo = new HashMap<>();
-                                userInfo.put(NAME, userPersonalName);
+                                userInfo.put(NAME, fullName);
                                 userInfo.put(EMAIL,userEmailAddress);
                                 myRef.setValue(userInfo);
 
                                 fireDb.child(MMConstant.ID_EMAIL_MAP).child(userId).setValue(userEmailAddress);
 
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(userPersonalName).build();
+                                        .setDisplayName(fullName).build();
                                 fbUser.updateProfile(profileUpdates);
 
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(MMConstant.NAME, userPersonalName);
+                                editor.putString(MMConstant.NAME, fullName);
                                 editor.putString(MMConstant.USER_ID, userId);
                                 editor.putString(MMConstant.EMAIL, userEmailAddress);
                                 editor.commit();
@@ -133,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
         //update updateAliceFriendList
         Map<String, Object> myInfo = new HashMap<>();
         myInfo.put(USER_ID, myUserId);
-        myInfo.put(NAME, userPersonalName);
+        myInfo.put(NAME, fullName);
         myInfo.put(CHAT_ID, chatId);
         myInfo.put(ONLINE, true);
         fireDb.child(MMConstant.USERS).child(MUNDO_ID).child(FRIENDS).child(myUserId).setValue(myInfo);
@@ -171,6 +178,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         sharedpreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 }

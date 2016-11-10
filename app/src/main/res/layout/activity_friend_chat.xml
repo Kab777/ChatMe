@@ -3,6 +3,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#f7fcff"
+                android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
@@ -10,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/senderContainer"
+        android:scrollbars="vertical"
         />
 
 
@@ -18,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/chatbox_bg"
         android:paddingBottom="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -30,12 +34,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:elevation="2dp"
             android:hint="Type your message"
             android:textSize="14sp"
             app:font="@string/GothamMedium">
+
             <requestFocus/>
         </com.junyu.IMBudget.widgets.CpEditText>
-
 
 
         <ImageView
@@ -43,7 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:background="@drawable/ic_send_black_36dp"
+            android:tint="@color/oceanBlue"
+            android:src="@drawable/ic_send_white_36dp"
+
             android:textColor="#FFFFFF"/>
 
     </LinearLayout>

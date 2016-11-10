@@ -3,7 +3,9 @@ package com.junyu.IMBudget.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.DashPathEffect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -68,14 +70,12 @@ public class FragmentChat extends Fragment {
     @BindView(R.id.progress) ProgressWheel progressWheel;
 
 
-
     @OnClick(R.id.addFriend)
     public void addFriend() {
         //A dialog that sends friend adding request
         SendFriendRequestDialog dialog = new SendFriendRequestDialog(getContext());
         dialog.show();
     }
-
 
 
     private ArrayList<Friend> friends = new ArrayList<>();
@@ -238,7 +238,7 @@ public class FragmentChat extends Fragment {
 
 
         @Override
-        public void onBindViewHolder(FriendAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(final FriendAdapter.ViewHolder holder, int position) {
             final Friend friend = friends.get(position);
             Timber.v(friend.toString());
             String userName = friend.getName();
@@ -259,17 +259,19 @@ public class FragmentChat extends Fragment {
                     Intent intent = new Intent(getContext(), ActivityFriendChat.class);
                     intent.putExtra(CHAT_ID, friend.getChatId());
                     intent.putExtra(NAME, friend.getName());
+                    Bitmap image = ((BitmapDrawable)holder.userImage.getDrawable()).getBitmap();
+                    intent.putExtra("image", image);
                     intent.putExtra(USER_ID, friend.getUserId());
                     startActivity(intent);
                 }
             });
             if (userImg != null && !userImg.equals("")) {
                 Picasso.with(context).load(userImg)
-                        .placeholder(R.drawable.ic_person_black_24dp)
+                        .placeholder(R.drawable.ic_face_profile)
                         .into(holder.userImage);
             } else {
                 Picasso.with(context)
-                        .load(R.drawable.ic_person_black_24dp)
+                        .load(R.drawable.ic_face_profile)
                         .into(holder.userImage);
             }
 

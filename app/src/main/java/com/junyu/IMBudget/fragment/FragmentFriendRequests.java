@@ -45,6 +45,7 @@ import static com.junyu.IMBudget.MMConstant.NAME;
 import static com.junyu.IMBudget.MMConstant.ONLINE;
 import static com.junyu.IMBudget.MMConstant.PROFILE_IMAGE;
 import static com.junyu.IMBudget.MMConstant.USER_ID;
+import static com.junyu.IMBudget.R.id.acceptRequest;
 
 
 /**
@@ -87,6 +88,8 @@ public class FragmentFriendRequests extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() == null) {
                     noFriendMsg.setVisibility(View.VISIBLE);
+                }else{
+                    noFriendMsg.setVisibility(View.GONE);
                 }
             }
 
@@ -100,7 +103,6 @@ public class FragmentFriendRequests extends Fragment {
         friendRequestDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                noFriendMsg.setVisibility(View.GONE);
                 Timber.v(dataSnapshot.toString());
                 FriendRequest newFriend = dataSnapshot.getValue(FriendRequest.class);
                 newFriend.setSenderId(dataSnapshot.getKey());
@@ -187,7 +189,7 @@ public class FragmentFriendRequests extends Fragment {
 
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
             final FriendRequest friendRequest = friendRequests.get(position);
             final String userName = friendRequest.getName();
             final String chatId = friendRequest.getChatId();
@@ -204,15 +206,17 @@ public class FragmentFriendRequests extends Fragment {
                 holder.added.setVisibility(View.GONE);
             }
             if (imgUrl != null && !imgUrl.equals("")) {
-                Picasso.with(context).load(imgUrl).placeholder(R.drawable.ic_person_black_24dp).into(holder.userImage);
+                Picasso.with(context).load(imgUrl).placeholder(R.drawable.ic_face_profile).into(holder.userImage);
             } else {
-                Picasso.with(context).load(R.drawable.ic_person_black_24dp).into(holder.userImage);
+                Picasso.with(context).load(R.drawable.ic_face_profile).into(holder.userImage);
             }
             holder.requestMsg.setText(msg);
 
             holder.acceptRequest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    holder.acceptRequest.setVisibility(View.GONE);
+                    holder.added.setVisibility(View.VISIBLE);
                     sendAcceptRequest(friendId, chatId, imgUrl);
                 }
             });

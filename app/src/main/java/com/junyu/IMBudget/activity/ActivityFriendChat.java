@@ -2,13 +2,23 @@ package com.junyu.IMBudget.activity;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -44,6 +54,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
+import static android.R.attr.bitmap;
 import static com.junyu.IMBudget.MMConstant.CHAT_BOT_ID;
 import static com.junyu.IMBudget.MMConstant.MSG_FORMAT;
 import static com.junyu.IMBudget.MMConstant.MUNDO_ID;
@@ -96,7 +107,7 @@ public class ActivityFriendChat extends AppCompatActivity {
             //ask Alice to respond here
 
             AliceChatService service = retrofit.create(AliceChatService.class);
-            Observable<AliceMsg> call = service.getMsg(CHAT_BOT_ID,msg,userId,MSG_FORMAT);
+            Observable<AliceMsg> call = service.getMsg(CHAT_BOT_ID, msg, userId, MSG_FORMAT);
             call
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -132,14 +143,19 @@ public class ActivityFriendChat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_chat);
         ButterKnife.bind(this);
+        ChatMeApplication.getNetComponent(this).inject(this);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         fireDb = FirebaseDatabase.getInstance().getReference();
         Intent incomingIntent = getIntent();
-        getSupportActionBar().setTitle(incomingIntent.getStringExtra(NAME));
+        getSupportActionBar().setTitle("  " + incomingIntent.getStringExtra(NAME));
+        getSupportActionBar().setIcon(new BitmapDrawable(getResources(), createCircleBitmap((Bitmap) incomingIntent.getParcelableExtra("image"))));
         chatId = incomingIntent.getStringExtra(CHAT_ID);
         String friendUserId = incomingIntent.getStringExtra(USER_ID);
 
-        ChatMeApplication.getNetComponent(this).inject(this);
 
         if (friendUserId.equals(MUNDO_ID)) {
             chatWhAlice = true;
@@ -149,6 +165,12 @@ public class ActivityFriendChat extends AppCompatActivity {
         userId = MMUserPreference.getUserId(this);
         chatRv.setLayoutManager(new LinearLayoutManager(this));
         chatRv.setHasFixedSize(true);
+        chatRv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                chatRv.scrollToPosition(msgChatAdapter.getItemCount() - 1);
+            }
+        });
         msgChatAdapter = new MsgChatAdapter(this, new ArrayList<MessageChatModel>());
         chatRv.setAdapter(msgChatAdapter);
         chatDb = fireDb.child(MESSAGES).child(chatId);
@@ -200,12 +222,27 @@ public class ActivityFriendChat extends AppCompatActivity {
     }
 
     @Override
-    public void finish() {
-        super.finish();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public Bitmap createCircleBitmap(Bitmap bitmapimg){
+        Bitmap output = Bitmap.createBitmap(bitmapimg.getWidth(),
+                bitmapimg.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmapimg.getWidth(),
+                bitmapimg.getHeight());
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawCircle(bitmapimg.getWidth() / 2,
+                bitmapimg.getHeight() / 2, bitmapimg.getWidth() / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmapimg, rect, rect, paint);
+        return output;
     }
 }

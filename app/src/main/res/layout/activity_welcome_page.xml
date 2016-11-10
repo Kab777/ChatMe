@@ -11,6 +11,12 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context="com.junyu.IMBudget.activity.MainActivity">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_chat_me"/>
 
     <EditText
         android:id="@+id/userEmail"
@@ -33,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:padding="4dp"

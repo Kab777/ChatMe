@@ -32,6 +32,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.SignUpActivity"
+            android:label="Sign Up"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".TransactionActivity"
@@ -45,8 +46,9 @@
         <activity
             android:name=".activity.ActivityFriendChat"
             android:label="Chat"
+            android:icon="@drawable/ic_face_profile"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activity.ActivitySetting">
         </activity>
     </application>
