@@ -10,6 +10,12 @@ It supports local cache.
 
 It follows google material design. 
 
+**V 1.16** Release notes
+
+* added icon in chat page
+* layout redesign
+* bug fixing
+
 **V 1.15** Release notes
 
 * Added Chat Bot
