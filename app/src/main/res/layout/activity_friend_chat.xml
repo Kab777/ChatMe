@@ -35,6 +35,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:elevation="2dp"
+            android:cursorVisible="true"
             android:hint="Type your message"
             android:textSize="14sp"
             app:font="@string/GothamMedium">
