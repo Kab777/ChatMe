@@ -1,5 +1,7 @@
 # ChatMe
 
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/licenses/MIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Play Store link [ChatMe](https://play.google.com/store/apps/details?id=com.junyu.IMBudget)
 
 An app that allows users to send instant message.
